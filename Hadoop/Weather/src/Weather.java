@@ -1,5 +1,4 @@
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.FileInputFormat;
 import org.apache.hadoop.mapred.FileOutputFormat;
@@ -16,10 +15,11 @@ public class Weather {
 			conf.setJobName("Weather");
 
 			conf.setOutputKeyClass(Text.class);
-			conf.setOutputValueClass(IntWritable.class);
+			conf.setOutputValueClass(WeatherWritable.class);
 
-			FileInputFormat.addInputPath(conf, new Path("noaa.txt"));
-			FileOutputFormat.setOutputPath(conf, new Path("output3"));
+			FileInputFormat.addInputPath(conf, new Path("2013.txt"));
+			FileOutputFormat
+					.setOutputPath(conf, new Path("output2013Advanced"));
 
 			conf.setMapperClass(WeatherMap.class);
 			conf.setReducerClass(WeatherReduce.class);
